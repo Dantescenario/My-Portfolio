@@ -63,7 +63,7 @@ const projectData = {
     'resume-builder': {
         title: 'Resume Builder',
         description: 'Create a clean, professional resume instantly with this ready-to-use web application. Perfect for students, job seekers, and professionals who want a modern resume without spending hours formatting.',
-        videoUrl: 'videos/resume-builder.mp4',
+        videoUrl: './videos/resume-builder.mp4',
         features: [
             'Professional resume templates',
             'Easy-to-use interface',
@@ -77,7 +77,7 @@ const projectData = {
     'job-tracker': {
         title: 'Job Application Tracker',
         description: 'A simple, offline-first Job Application Tracker to organize your job hunt in one clean dashboard. Track applications, interviews, and follow-ups all in one place.',
-        videoUrl: 'videos/job-tracker.mp4',
+        videoUrl: './videos/job-tracker.mp4',
         features: [
             'Track job applications',
             'Manage interview schedules',
@@ -91,7 +91,7 @@ const projectData = {
     'finance-dashboard': {
         title: 'Finance Dashboard',
         description: 'A comprehensive finance dashboard for data visualization using interactive charts and analytics. Visualize your financial data in real-time with beautiful, interactive graphs.',
-        videoUrl: 'videos/finance-dashboard.mp4',
+        videoUrl: './videos/finance-dashboard.mp4',
         features: [
             'Interactive charts and graphs',
             'Financial data visualization',
@@ -105,7 +105,7 @@ const projectData = {
     'goal-tracker': {
         title: 'Goal Tracker Pro',
         description: 'A modern, feature-rich goal tracking application built with React, Vite, and Tailwind CSS. Track your daily, weekly, and monthly goals with real-time progress updates and beautiful visualizations.',
-        videoUrl: 'videos/goal-tracker.mp4',
+        videoUrl: './videos/goal-tracker.mp4',
         features: [
             'Daily, weekly, and monthly goals',
             'Progress tracking',
