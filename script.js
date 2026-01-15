@@ -63,7 +63,7 @@ const projectData = {
     'resume-builder': {
         title: 'Resume Builder',
         description: 'Create a clean, professional resume instantly with this ready-to-use web application. Perfect for students, job seekers, and professionals who want a modern resume without spending hours formatting.',
-        videoUrl: null,
+        videoUrl: 'https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/v1/resume-builder', // Replace YOUR_CLOUD_NAME
         features: [
             'Professional resume templates',
             'Easy-to-use interface',
@@ -77,7 +77,7 @@ const projectData = {
     'job-tracker': {
         title: 'Job Application Tracker',
         description: 'A simple, offline-first Job Application Tracker to organize your job hunt in one clean dashboard. Track applications, interviews, and follow-ups all in one place.',
-        videoUrl: null,
+        videoUrl: 'https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/v1/job-tracker', // Replace YOUR_CLOUD_NAME
         features: [
             'Track job applications',
             'Manage interview schedules',
@@ -91,7 +91,7 @@ const projectData = {
     'finance-dashboard': {
         title: 'Finance Dashboard',
         description: 'A comprehensive finance dashboard for data visualization using interactive charts and analytics. Visualize your financial data in real-time with beautiful, interactive graphs.',
-        videoUrl: null,
+        videoUrl: 'https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/v1/finance-dashboard', // Replace YOUR_CLOUD_NAME
         features: [
             'Interactive charts and graphs',
             'Financial data visualization',
@@ -105,7 +105,7 @@ const projectData = {
     'goal-tracker': {
         title: 'Goal Tracker Pro',
         description: 'A modern, feature-rich goal tracking application built with React, Vite, and Tailwind CSS. Track your daily, weekly, and monthly goals with real-time progress updates and beautiful visualizations.',
-        videoUrl: null,
+        videoUrl: 'https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/v1/goal-tracker', // Replace YOUR_CLOUD_NAME
         features: [
             'Daily, weekly, and monthly goals',
             'Progress tracking',
@@ -165,7 +165,7 @@ function openProjectModal(projectId) {
     modalTitle.textContent = project.title;
 
     // Set video or placeholder
-    if (project.videoUrl) {
+    if (project.videoUrl && !project.videoUrl.includes('YOUR_CLOUD_NAME')) {
         videoContainer.innerHTML = `
             <video width="100%" height="400" controls style="border-radius: 12px;">
                 <source src="${project.videoUrl}" type="video/mp4">
