@@ -63,7 +63,7 @@ const projectData = {
     'resume-builder': {
         title: 'Resume Builder',
         description: 'Create a clean, professional resume instantly with this ready-to-use web application. Perfect for students, job seekers, and professionals who want a modern resume without spending hours formatting.',
-        videoUrl: '/My-Portfolio/videos/resume-builder.mp4',
+        videoUrl: null,
         features: [
             'Professional resume templates',
             'Easy-to-use interface',
@@ -77,7 +77,7 @@ const projectData = {
     'job-tracker': {
         title: 'Job Application Tracker',
         description: 'A simple, offline-first Job Application Tracker to organize your job hunt in one clean dashboard. Track applications, interviews, and follow-ups all in one place.',
-        videoUrl: '/My-Portfolio/videos/job-tracker.mp4',
+        videoUrl: null,
         features: [
             'Track job applications',
             'Manage interview schedules',
@@ -91,7 +91,7 @@ const projectData = {
     'finance-dashboard': {
         title: 'Finance Dashboard',
         description: 'A comprehensive finance dashboard for data visualization using interactive charts and analytics. Visualize your financial data in real-time with beautiful, interactive graphs.',
-        videoUrl: '/My-Portfolio/videos/finance-dashboard.mp4',
+        videoUrl: null,
         features: [
             'Interactive charts and graphs',
             'Financial data visualization',
@@ -105,7 +105,7 @@ const projectData = {
     'goal-tracker': {
         title: 'Goal Tracker Pro',
         description: 'A modern, feature-rich goal tracking application built with React, Vite, and Tailwind CSS. Track your daily, weekly, and monthly goals with real-time progress updates and beautiful visualizations.',
-        videoUrl: '/My-Portfolio/videos/goal-tracker.mp4',
+        videoUrl: null,
         features: [
             'Daily, weekly, and monthly goals',
             'Progress tracking',
@@ -164,13 +164,21 @@ function openProjectModal(projectId) {
     // Set title
     modalTitle.textContent = project.title;
 
-    // Set video with HTML5 video player for local files
-    videoContainer.innerHTML = `
-        <video width="100%" height="400" controls style="border-radius: 12px;">
-            <source src="${project.videoUrl}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    `;
+    // Set video or placeholder
+    if (project.videoUrl) {
+        videoContainer.innerHTML = `
+            <video width="100%" height="400" controls style="border-radius: 12px;">
+                <source src="${project.videoUrl}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        `;
+    } else {
+        videoContainer.innerHTML = `
+            <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white;">
+                <p style="text-align: center; font-size: 1.1rem;">🎥 Demo video coming soon!<br><br>Check the GitHub repository for more details.</p>
+            </div>
+        `;
+    }
 
     // Set project details
     projectDetails.innerHTML = `
