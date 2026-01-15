@@ -5,59 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishabh Bhardwaj - Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
-        <h1>Rishabh Bhardwaj</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="header-content">
+            <h1 class="logo">RB</h1>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
     </header>
 
     <section id="about" class="hero">
+        <div class="hero-background"></div>
         <div class="hero-content">
-            <h2>Hi, I'm Rishabh Bhardwaj</h2>
-            <p>I am a passionate **Programmer and Game developer** focused on building practical, user-friendly solutions.</p>
+            <h2 class="hero-title">Hi, I'm Rishabh Bhardwaj</h2>
+            <p class="hero-subtitle">A passionate Programmer and Game Developer crafting elegant solutions that matter</p>
             <a href="https://github.com/Dantescenario" target="_blank" class="cta-button">View GitHub Profile</a>
         </div>
     </section>
 
-    <section id="projects" class="container">
-        <h3>My Work</h3>
-        <div class="project-list">
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h3 class="section-title">My Work</h3>
+            <div class="project-list">
             
             <div class="project-card">
-                <h4>Personal Portfolio Website</h4>
-                <p>A responsive showcase of my skills and future coding projects built with HTML and CSS.</p>
+                <h4>Resume Builder</h4>
+                <p>Create a clean, professional resume instantly with this ready-to-use web application. Perfect for students, job seekers, and professionals.</p>
                 <div class="project-links">
-                    <a href="https://Dantescenario.github.io/my-portfolio/" target="_blank">Live Demo</a>
-                    <a href="https://github.com/Dantescenario/my-portfolio" target="_blank">Source Code</a>
+                    <button class="view-project-btn" data-project="resume-builder">View Project</button>
+                    <a href="https://github.com/Dantescenario/resume-builder" target="_blank">Source Code</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <h4>File Organizer CLI Tool</h4>
-                <p>A command-line interface tool built in Python to automatically sort files into categorized folders.</p>
+                <h4>Job Application Tracker</h4>
+                <p>A simple, offline-first Job Application Tracker to organize your job hunt in one clean dashboard.</p>
                 <div class="project-links">
-                    <a href="https://github.com/Dantescenario/python-cli-organizer#how-to-use" target="_blank">Usage Guide</a> 
-                    <a href="https://github.com/Dantescenario/python-cli-organizer" target="_blank">Source Code</a>
+                    <button class="view-project-btn" data-project="job-tracker">View Project</button>
+                    <a href="https://github.com/Dantescenario/job-application-tracker" target="_blank">Source Code</a>
                 </div>
             </div>
-            
+
+            <div class="project-card">
+                <h4>Finance Dashboard</h4>
+                <p>A comprehensive finance dashboard for data visualization using interactive charts and analytics.</p>
+                <div class="project-links">
+                    <button class="view-project-btn" data-project="finance-dashboard">View Project</button>
+                    <a href="https://github.com/Dantescenario/finance-dashboard" target="_blank">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h4>Goal Tracker Pro</h4>
+                <p>A modern, feature-rich goal tracking application built with React, Vite, and Tailwind CSS. Track your daily, weekly, and monthly goals with real-time progress updates.</p>
+                <div class="project-links">
+                    <button class="view-project-btn" data-project="goal-tracker">View Project</button>
+                    <a href="https://github.com/Dantescenario/Goal-Tracker-Pro" target="_blank">Source Code</a>
+                </div>
+            </div>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="container">
-        <h3>Get in Touch</h3>
-        <p>I'm open to discussing new projects and opportunities.</p>
-        <a href="mailto:risabh112000@gmail.com">Send me an Email</a>
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h3 class="section-title">Get in Touch</h3>
+            <p class="contact-description">I'm open to discussing new projects and opportunities.</p>
+            
+            <div class="contact-options">
+                <div class="email-display">
+                    <p class="email-label">Email:</p>
+                    <p class="email-address">risabh112000@gmail.com</p>
+                </div>
+                
+                <div class="contact-buttons">
+                    <button class="copy-email-btn" data-email="risabh112000@gmail.com">
+                        📋 Copy Email
+                    </button>
+                    <a href="mailto:risabh112000@gmail.com" class="contact-button">
+                        ✉️ Send Email
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Rishabh Bhardwaj. All rights reserved.</p>
     </footer>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <div id="videoContainer" class="video-container"></div>
+                <div id="projectDetails" class="project-details"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
