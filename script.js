@@ -72,7 +72,8 @@ const projectData = {
             'Customizable sections'
         ],
         technologies: ['JavaScript', 'HTML', 'CSS'],
-        github: 'https://github.com/Dantescenario/resume-builder'
+        github: 'https://github.com/Dantescenario/resume-builder',
+        liveUrl: 'https://sweet-squirrel-84c68c.netlify.app/'
     },
     'job-tracker': {
         title: 'Job Application Tracker',
@@ -86,7 +87,8 @@ const projectData = {
             'Clean, intuitive dashboard'
         ],
         technologies: ['JavaScript', 'HTML', 'CSS', 'LocalStorage'],
-        github: 'https://github.com/Dantescenario/job-application-tracker'
+        github: 'https://github.com/Dantescenario/job-application-tracker',
+        liveUrl: 'https://glittery-centaur-192dca.netlify.app/'
     },
     'finance-dashboard': {
         title: 'Finance Dashboard',
@@ -196,7 +198,8 @@ function openProjectModal(projectId) {
         </div>
         
         <div class="modal-buttons">
-            <a href="${project.github}" target="_blank" class="modal-btn">View on GitHub</a>
+            ${project.liveUrl ? `<a href="${project.liveUrl}" target="_blank" class="modal-btn primary">🚀 Live Demo</a>` : ''}
+            <a href="${project.github}" target="_blank" class="modal-btn secondary">View on GitHub</a>
         </div>
     `;
 
