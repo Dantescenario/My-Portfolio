@@ -43,13 +43,12 @@ Track daily, weekly, and monthly goals with beautiful visualizations.
 ## 🛠️ Tech Stack
 
 ### Frontend
-- HTML5, CSS3 (with gradients, animations)
-- JavaScript (ES6+)
-- React & Vite
-- Tailwind CSS
+- Next.js 16 (React 19)
+- Three.js & React Three Fiber (for interactive 3D Globe)
+- Framer Motion & GSAP (for animations)
+- HTML5, CSS3 (CSS Modules & Vanilla CSS)
 
 ### Backend & Tools
-- Python
 - Git & GitHub
 - Cloudinary (media hosting)
 
@@ -63,8 +62,11 @@ git clone https://github.com/Dantescenario/My-Portfolio.git
 # Navigate to project
 cd My-Portfolio
 
-# Open in browser
-open index.html
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
 ```
 
 ## 🎨 Design Highlights
