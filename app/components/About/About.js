@@ -79,7 +79,7 @@ export default function About() {
           >
             <div className={styles.bio}>
               <p>
-                I'm <strong>Rishabh Bhardwaj</strong>, a passionate Software Engineer focused on building
+                I&apos;m <strong>Rishabh Bhardwaj</strong>, a passionate Software Engineer focused on building
                 clean, performant, and user-friendly web applications. I love turning complex problems into
                 elegant digital solutions.
               </p>
@@ -89,7 +89,7 @@ export default function About() {
                 I care deeply about code quality, developer experience, and shipping products that matter.
               </p>
               <p>
-                When I'm not coding, I'm exploring new technologies, contributing to open source,
+                When I&apos;m not coding, I&apos;m exploring new technologies, contributing to open source,
                 and continuously leveling up my skills.
               </p>
             </div>

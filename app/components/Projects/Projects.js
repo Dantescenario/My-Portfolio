@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import styles from './Projects.module.css';
 
@@ -53,6 +53,42 @@ const PROJECTS = [
 ];
 
 function ProjectModal({ project, onClose }) {
+  const modalRef = useRef(null);
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    const previousFocus = document.activeElement;
+    closeRef.current?.focus();
+    document.body.style.overflow = 'hidden';
+
+    const handleKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll(
+          'button, [href], video, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const items = Array.from(focusable).filter((el) => !el.disabled);
+        if (items.length === 0) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+      previousFocus?.focus?.();
+    };
+  }, [onClose]);
+
   return (
     <motion.div
       className={styles.modalOverlay}
@@ -62,14 +98,18 @@ function ProjectModal({ project, onClose }) {
       onClick={onClose}
     >
       <motion.div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
         className={`${styles.modal} glass-card`}
         initial={{ scale: 0.85, opacity: 0, y: 40 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.85, opacity: 0, y: 40 }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
-        <button className={styles.modalClose} onClick={onClose} aria-label="Close">
+        <button ref={closeRef} className={styles.modalClose} onClick={onClose} aria-label="Close">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -77,7 +117,7 @@ function ProjectModal({ project, onClose }) {
 
         <div className={styles.modalHeader} style={{ background: project.gradient }}>
           <span className={styles.modalIcon}>{project.icon}</span>
-          <h2 className={styles.modalTitle}>{project.title}</h2>
+          <h2 id="modal-title" className={styles.modalTitle}>{project.title}</h2>
           <div className={styles.modalTags}>
             {project.tags.map(tag => (
               <span key={tag} className={styles.modalTag}>{tag}</span>
@@ -90,8 +130,8 @@ function ProjectModal({ project, onClose }) {
             <video
               src={project.videoUrl}
               controls
+              preload="metadata"
               className={styles.video}
-              poster=""
             />
           )}
 
@@ -132,6 +172,8 @@ export default function Projects() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [selected, setSelected] = useState(null);
 
+  const closeModal = useCallback(() => setSelected(null), []);
+
   return (
     <section id="projects" className={styles.section} ref={ref}>
       <div className="container">
@@ -140,7 +182,7 @@ export default function Projects() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className={styles.eyebrow}>What I've built</p>
+          <p className={styles.eyebrow}>What I&apos;ve built</p>
           <h2 className="section-title">My <span>Work</span></h2>
           <p className="section-subtitle">Real-world applications — click any card to explore details & demo</p>
         </motion.div>
@@ -157,6 +199,9 @@ export default function Projects() {
             >
               {/* Card top gradient bar */}
               <div className={styles.cardBar} style={{ background: project.gradient }} />
+              {!project.live && (
+                <span className={styles.statusBadge}>Video demo</span>
+              )}
 
               <div className={styles.cardContent}>
                 <div className={styles.cardTop}>
@@ -169,6 +214,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className={styles.iconLink}
                         title="Live Demo"
+                        aria-label="Live demo"
                         onClick={e => e.stopPropagation()}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -182,6 +228,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className={styles.iconLink}
                       title="GitHub"
+                      aria-label="View source on GitHub"
                       onClick={e => e.stopPropagation()}
                     >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -216,7 +263,7 @@ export default function Projects() {
       </div>
 
       <AnimatePresence>
-        {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+        {selected && <ProjectModal project={selected} onClose={closeModal} />}
       </AnimatePresence>
     </section>
   );

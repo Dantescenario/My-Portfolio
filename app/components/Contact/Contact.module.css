@@ -94,7 +94,7 @@
   font-weight: 700;
   color: #e2e8f0;
   word-break: break-all;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 .emailActions {
@@ -128,7 +128,7 @@
 }
 
 .infoTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: #f8fafc;

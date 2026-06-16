@@ -47,6 +47,21 @@
   width: 100%;
 }
 
+.statusBadge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  backdrop-filter: blur(8px);
+}
+
 .cardContent {
   padding: 28px;
 }
@@ -90,7 +105,7 @@
 }
 
 .cardTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: #f8fafc;
@@ -132,7 +147,7 @@
   border-radius: 10px;
   font-size: 0.875rem;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   cursor: pointer;
   transition: all 0.25s;
 }
@@ -204,7 +219,7 @@
 }
 
 .modalTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: white;
@@ -241,7 +256,7 @@
 }
 
 .modalSubtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #818cf8;

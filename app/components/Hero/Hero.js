@@ -1,40 +1,58 @@
 'use client';
 import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import styles from './Hero.module.css';
 
-const PARTICLES = Array.from({ length: 60 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 3 + 1,
-  duration: Math.random() * 20 + 10,
-  delay: Math.random() * 10,
-}));
+function createParticles(count, width, height) {
+  return Array.from({ length: count }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    size: Math.random() * 3 + 1,
+    opacity: Math.random() * 0.5 + 0.1,
+  }));
+}
 
 export default function Hero() {
   const canvasRef = useRef(null);
+  const sectionRef = useRef(null);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reducedMotion) return;
+
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const section = sectionRef.current;
+    if (!canvas || !section) return;
+
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const isMobile = window.innerWidth < 768;
+    const drawLines = !isMobile;
+    const maxDist = 100;
+    let particleCount = isMobile ? 18 : 32;
 
-    const particles = PARTICLES.map(p => ({
-      x: (p.x / 100) * canvas.width,
-      y: (p.y / 100) * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      size: p.size,
-      opacity: Math.random() * 0.5 + 0.1,
-    }));
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
 
-    let animId;
-    function draw() {
+    let particles = createParticles(particleCount, canvas.width, canvas.height);
+
+    let visible = true;
+    let tabVisible = true;
+    let animId = null;
+
+    const draw = () => {
+      if (!visible || !tabVisible) {
+        animId = null;
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
+
+      particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         if (p.x < 0) p.x = canvas.width;
@@ -48,36 +66,64 @@ export default function Hero() {
         ctx.fill();
       });
 
-      // Draw connecting lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(99,102,241,${0.08 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+      if (drawLines) {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < maxDist * maxDist) {
+              const dist = Math.sqrt(distSq);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(99,102,241,${0.08 * (1 - dist / maxDist)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
+
       animId = requestAnimationFrame(draw);
-    }
-    draw();
+    };
+
+    const start = () => {
+      if (animId === null) draw();
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) start();
+      },
+      { threshold: 0 }
+    );
+    observer.observe(section);
+
+    const onVisibility = () => {
+      tabVisible = document.visibilityState === 'visible';
+      if (tabVisible && visible) start();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const mobile = window.innerWidth < 768;
+      particleCount = mobile ? 18 : 32;
+      resize();
+      particles = createParticles(particleCount, canvas.width, canvas.height);
     };
     window.addEventListener('resize', handleResize);
+
+    start();
+
     return () => {
-      cancelAnimationFrame(animId);
+      if (animId !== null) cancelAnimationFrame(animId);
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [reducedMotion]);
 
   const containerVariants = {
     hidden: {},
@@ -86,14 +132,17 @@ export default function Hero() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
   };
 
   return (
-    <section id="hero" className={styles.hero}>
-      <canvas ref={canvasRef} className={styles.canvas} />
+    <section id="hero" className={styles.hero} ref={sectionRef}>
+      {!reducedMotion && <canvas ref={canvasRef} className={styles.canvas} />}
 
-      {/* Orbs */}
       <div className={styles.orb1} />
       <div className={styles.orb2} />
       <div className={styles.orb3} />
@@ -110,7 +159,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.h1 variants={itemVariants} className={styles.title}>
-          Hi, I'm{' '}
+          Hi, I&apos;m{' '}
           <span className={styles.nameGradient}>Rishabh Bhardwaj</span>
         </motion.h1>
 
@@ -147,7 +196,7 @@ export default function Hero() {
             { num: '4+', label: 'Projects Built' },
             { num: '2+', label: 'Years Coding' },
             { num: '5+', label: 'Technologies' },
-          ].map(stat => (
+          ].map((stat) => (
             <div key={stat.label} className={styles.stat}>
               <span className={styles.statNum}>{stat.num}</span>
               <span className={styles.statLabel}>{stat.label}</span>
@@ -156,7 +205,6 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         className={styles.scrollIndicator}
         initial={{ opacity: 0, y: 10 }}

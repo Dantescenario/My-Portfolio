@@ -18,8 +18,27 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector(link.href))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   const handleNav = (href) => {
@@ -35,25 +54,25 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <div className={styles.inner}>
-        {/* Logo */}
         <motion.a
           href="#hero"
           className={styles.logo}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => handleNav('#hero')}
         >
           <span className={styles.logoLetters}>RB</span>
           <span className={styles.logoDot} />
         </motion.a>
 
-        {/* Desktop Nav */}
-        <nav className={styles.nav}>
+        <nav className={styles.nav} aria-label="Main navigation">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => handleNav(link.href)}
               className={`${styles.navLink} ${active === link.href ? styles.navLinkActive : ''}`}
+              aria-current={active === link.href ? 'page' : undefined}
             >
               {link.label}
               {active === link.href && (
@@ -67,16 +86,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <a href="#contact" className="btn-glow" style={{ padding: '10px 24px', fontSize: '0.9rem' }}>
+        <a href="#contact" className={`btn-glow ${styles.cta}`}>
           Hire Me
         </a>
 
-        {/* Hamburger */}
         <button
           className={styles.hamburger}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           <span className={menuOpen ? styles.barOpen1 : styles.bar} />
           <span className={menuOpen ? styles.barOpen2 : styles.bar} />
@@ -84,7 +102,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -99,10 +116,11 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => handleNav(link.href)}
-                className={styles.mobileLink}
+                className={`${styles.mobileLink} ${active === link.href ? styles.mobileLinkActive : ''}`}
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: i * 0.06 }}
+                aria-current={active === link.href ? 'page' : undefined}
               >
                 {link.label}
               </motion.a>

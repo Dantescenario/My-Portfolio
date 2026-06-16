@@ -81,7 +81,7 @@
 }
 
 .avatarInitials {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 3.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, #6366f1, #a855f7);
@@ -188,7 +188,7 @@
 
 /* Timeline */
 .timelineTitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #e2e8f0;

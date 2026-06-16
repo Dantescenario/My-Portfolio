@@ -36,7 +36,7 @@
 }
 
 .logoLetters {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: 1.8rem;
   font-weight: 800;
   background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
@@ -79,6 +79,12 @@
 
 .navLinkActive {
   color: #f8fafc;
+}
+
+.cta {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
 .navIndicator {
@@ -165,9 +171,14 @@
   color: #818cf8;
 }
 
+.mobileLinkActive {
+  color: #f8fafc;
+  padding-left: 12px;
+  border-left: 3px solid #6366f1;
+}
+
 @media (max-width: 768px) {
   .nav { display: none; }
   .hamburger { display: flex; }
-  .header > a { display: none; }
-  .inner > a.btn-glow { display: none; }
+  .cta { display: none; }
 }

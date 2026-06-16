@@ -73,7 +73,7 @@ export default function Contact() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className={styles.eyebrow}>Let's connect</p>
+          <p className={styles.eyebrow}>Let&apos;s connect</p>
           <h2 className="section-title">Get in <span>Touch</span></h2>
           <p className="section-subtitle">
             Open to new projects, opportunities, and interesting conversations.
@@ -130,9 +130,9 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             <div className={`${styles.infoCard} glass-card`}>
-              <h3 className={styles.infoTitle}>Let's work together</h3>
+              <h3 className={styles.infoTitle}>Let&apos;s work together</h3>
               <p className={styles.infoText}>
-                I'm currently open to freelance projects and full-time roles. Whether
+                I&apos;m currently open to freelance projects and full-time roles. Whether
                 you have an idea, a project, or just want to say hi — my inbox is always open.
               </p>
 

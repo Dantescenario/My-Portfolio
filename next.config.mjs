@@ -19,7 +19,15 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; img-src 'self' https://cdn.jsdelivr.net https://cdn.simpleicons.org data:; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'",
+            value: [
+              "default-src 'self'",
+              "img-src 'self' https://cdn.jsdelivr.net https://cdn.simpleicons.org data:",
+              "media-src 'self' https://res.cloudinary.com",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+              "style-src 'self' 'unsafe-inline'",
+              "font-src 'self'",
+              "connect-src 'self' https://res.cloudinary.com https://cdn.jsdelivr.net",
+            ].join('; '),
           },
         ],
       },

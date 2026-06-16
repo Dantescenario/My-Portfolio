@@ -4,7 +4,14 @@ import { motion, useInView } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import styles from './Skills.module.css';
 
-const TechGlobe = dynamic(() => import('../TechGlobe/TechGlobe'), { ssr: false });
+const TechGlobe = dynamic(() => import('../TechGlobe/TechGlobe'), {
+  ssr: false,
+  loading: () => (
+    <div className={styles.globePlaceholder} aria-hidden="true">
+      <div className={styles.globePlaceholderRing} />
+    </div>
+  ),
+});
 
 const SKILL_CATEGORIES = [
   {
