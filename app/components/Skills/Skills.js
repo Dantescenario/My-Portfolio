@@ -15,22 +15,22 @@ const TechGlobe = dynamic(() => import('../TechGlobe/TechGlobe'), {
 
 const SKILL_CATEGORIES = [
   {
-    title: 'Frontend',
-    icon: '⚡',
+    title: 'Machine Learning & AI',
+    icon: '🧠',
     color: '#6366f1',
-    skills: ['JavaScript', 'React', 'HTML5', 'CSS3', 'Tailwind CSS', 'Vite'],
+    skills: ['PyTorch', 'Scikit-learn', 'Deep Learning', 'CNNs', 'Computer Vision', 'RAG', 'Semantic Search', 'Vector Embeddings'],
   },
   {
-    title: 'Backend',
-    icon: '🛠️',
+    title: 'Generative AI & Backend',
+    icon: '🤖',
     color: '#a855f7',
-    skills: ['Python', 'Node.js', 'CLI Tools', 'Data Processing', 'REST APIs'],
+    skills: ['Ollama', 'Llama', 'BGE-M3', 'Prompt Engineering', 'FastAPI', 'REST APIs', 'SQL'],
   },
   {
-    title: 'Tools & Platforms',
+    title: 'Data & Tools',
     icon: '🚀',
     color: '#06b6d4',
-    skills: ['Git', 'GitHub', 'GitHub Pages', 'Cloudinary', 'VS Code', 'Vercel', 'Netlify'],
+    skills: ['Python', 'C++', 'NumPy', 'Pandas', 'Matplotlib', 'Git', 'GitHub', 'VS Code'],
   },
 ];
 

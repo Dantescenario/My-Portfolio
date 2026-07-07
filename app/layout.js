@@ -16,14 +16,14 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'Rishabh Bhardwaj — Software Engineer & Full-Stack Developer',
+  title: 'Rishabh Bhardwaj — Machine Learning Engineer & AI Developer',
   description:
-    'Portfolio of Rishabh Bhardwaj — Software Engineer specializing in Backend & Full-Stack Development with JavaScript, Python, React, and Node.js.',
+    'Portfolio of Rishabh Bhardwaj — Machine Learning Engineer specializing in Computer Vision, Deep Learning, Generative AI, RAG, and FastAPI.',
   keywords:
-    'Rishabh Bhardwaj, Software Engineer, Full-Stack Developer, React, Node.js, Python, JavaScript, Portfolio',
+    'Rishabh Bhardwaj, Machine Learning Engineer, AI Developer, Deep Learning, Computer Vision, RAG, FastAPI, PyTorch, Python, Portfolio',
   openGraph: {
-    title: 'Rishabh Bhardwaj — Software Engineer',
-    description: 'Full-Stack Developer building real-world web applications.',
+    title: 'Rishabh Bhardwaj — Machine Learning Engineer',
+    description: 'Machine Learning Engineer designing and deploying end-to-end AI applications.',
     type: 'website',
   },
 };

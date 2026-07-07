@@ -16,7 +16,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/rishabh-bhardwaj-84809b358/',
+    url: 'https://www.linkedin.com/in/rishabhbhardwaj-84809b358/',
     color: '#0077B5',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">

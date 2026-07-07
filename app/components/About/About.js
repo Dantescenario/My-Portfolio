@@ -4,10 +4,10 @@ import { motion, useInView } from 'framer-motion';
 import styles from './About.module.css';
 
 const TIMELINE = [
-  { year: '2022', event: 'Started coding journey with Python & web basics' },
-  { year: '2023', event: 'Built first full-stack web apps with JavaScript & React' },
-  { year: '2024', event: 'Deployed multiple production projects on Vercel & Netlify' },
-  { year: '2025+', event: 'Expanding into backend systems & open to full-time roles' },
+  { year: '2022', event: 'Started coding journey with Python & C++ fundamentals' },
+  { year: '2023', event: 'Designed CNN chest X-ray classification systems with PyTorch' },
+  { year: '2024', event: 'Engineered RAG search tutors and full-stack AI resume generators' },
+  { year: '2025+', event: 'Deploying scalable backend AI APIs and high-performance ML pipelines' },
 ];
 
 export default function About() {
@@ -50,7 +50,7 @@ export default function About() {
               {[
                 { icon: '🌏', label: 'Location', value: 'India' },
                 { icon: '💼', label: 'Status', value: 'Open to Work' },
-                { icon: '⚡', label: 'Focus', value: 'Full-Stack Dev' },
+                { icon: '⚡', label: 'Focus', value: 'ML & AI Eng' },
                 { icon: '🎓', label: 'Mindset', value: 'Always Learning' },
               ].map((fact, i) => (
                 <motion.div
@@ -79,18 +79,13 @@ export default function About() {
           >
             <div className={styles.bio}>
               <p>
-                I&apos;m <strong>Rishabh Bhardwaj</strong>, a passionate Software Engineer focused on building
-                clean, performant, and user-friendly web applications. I love turning complex problems into
-                elegant digital solutions.
+                I&apos;m <strong>Rishabh Bhardwaj</strong>, a Machine Learning Engineer with hands-on experience designing and deploying end-to-end AI applications in Computer Vision, Deep Learning, and Generative AI.
               </p>
               <p>
-                My journey started with Python scripting and quickly evolved into full-stack development —
-                from crafting responsive frontends with React to architecting backend services.
-                I care deeply about code quality, developer experience, and shipping products that matter.
+                My experience spans building production-oriented machine learning systems including a CNN chest X-ray classification pipeline, a Retrieval-Augmented Generation (RAG) system with semantic chunking, and a full-stack AI-powered resume builder.
               </p>
               <p>
-                When I&apos;m not coding, I&apos;m exploring new technologies, contributing to open source,
-                and continuously leveling up my skills.
+                I am proficient in Python, PyTorch, FastAPI, LLM integration, semantic search, and REST API development, with a strong focus on scalable AI systems and backend engineering.
               </p>
             </div>
 

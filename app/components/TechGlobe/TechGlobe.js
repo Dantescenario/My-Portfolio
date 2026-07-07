@@ -3,18 +3,20 @@ import { useRef, useEffect } from 'react';
 import styles from './TechGlobe.module.css';
 
 const SKILLS = [
-  { name: 'JavaScript', color: '#F7DF1E', bg: '#1a1a00', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
-  { name: 'React', color: '#61DAFB', bg: '#001a1f', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
   { name: 'Python', color: '#3776AB', bg: '#00101a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
-  { name: 'Node.js', color: '#339933', bg: '#001a00', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
-  { name: 'HTML5', color: '#E34F26', bg: '#1a0800', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
-  { name: 'CSS3', color: '#1572B6', bg: '#001020', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
+  { name: 'PyTorch', color: '#EE4C2C', bg: '#1a0800', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg' },
+  { name: 'Scikit-learn', color: '#F7931E', bg: '#1a1000', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg' },
+  { name: 'FastAPI', color: '#059669', bg: '#001a10', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg' },
+  { name: 'NumPy', color: '#4DABCF', bg: '#00101a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg' },
+  { name: 'Pandas', color: '#e70488', bg: '#1a001a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg' },
+  { name: 'Matplotlib', color: '#11557c', bg: '#00101a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg' },
   { name: 'Git', color: '#F05032', bg: '#1a0800', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
-  { name: 'Vite', color: '#646CFF', bg: '#0a0a1a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg' },
-  { name: 'Tailwind', color: '#06B6D4', bg: '#001a1f', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
   { name: 'GitHub', color: '#ffffff', bg: '#161b22', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg' },
   { name: 'VS Code', color: '#007ACC', bg: '#001020', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg' },
-  { name: 'TypeScript', color: '#3178C6', bg: '#00101a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'C++', color: '#00599C', bg: '#00101a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'SQL', color: '#003B57', bg: '#00101a', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg' },
+  { name: 'Ollama', color: '#a855f7', bg: '#1a001a', url: '' },
+  { name: 'Llama', color: '#06b6d4', bg: '#001a1f', url: '' },
 ];
 
 function fibonacciSphere(n) {

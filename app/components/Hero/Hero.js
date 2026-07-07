@@ -164,15 +164,15 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p variants={itemVariants} className={styles.role}>
-          Software Engineer &nbsp;·&nbsp; Backend &amp; Full-Stack Developer
+          Machine Learning Engineer
         </motion.p>
 
         <motion.p variants={itemVariants} className={styles.subtitle}>
-          I build and deploy real-world web applications using{' '}
-          <span className={styles.highlight}>JavaScript</span>,{' '}
-          <span className={styles.highlight}>Python</span>,{' '}
-          <span className={styles.highlight}>React</span>, and{' '}
-          <span className={styles.highlight}>Node.js</span>.
+          I design, build, and deploy end-to-end AI applications with expertise in{' '}
+          <span className={styles.highlight}>Computer Vision</span>,{' '}
+          <span className={styles.highlight}>Deep Learning</span>,{' '}
+          <span className={styles.highlight}>RAG</span>, and{' '}
+          <span className={styles.highlight}>FastAPI</span>.
         </motion.p>
 
         <motion.div variants={itemVariants} className={styles.actions}>
@@ -193,9 +193,9 @@ export default function Hero() {
 
         <motion.div variants={itemVariants} className={styles.stats}>
           {[
-            { num: '4+', label: 'Projects Built' },
-            { num: '2+', label: 'Years Coding' },
-            { num: '5+', label: 'Technologies' },
+            { num: '3+', label: 'AI & ML Projects' },
+            { num: '100%', label: 'End-to-End Dev' },
+            { num: '10+', label: 'ML/AI Skills' },
           ].map((stat) => (
             <div key={stat.label} className={styles.stat}>
               <span className={styles.statNum}>{stat.num}</span>
